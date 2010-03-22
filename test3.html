@@ -1,0 +1,89 @@
+<HTML>
+<HEAD>
+<TITLE>Draggable Div </TITLE>
+<style type="text/css">
+
+#mydiv{
+z-index:10;
+background: #3366aa;
+color:#ffffff;
+width: 200px;
+height: 200px;
+position: absolute;
+top: 50px;
+left: 50px;
+
+ }
+
+#divhead{
+color:#000000;
+background:#cccccc;
+ }
+
+</style>
+<script language="javascript">
+
+ 
+var drag=0;
+var xdif=0;
+var ydif=0;
+var initx="50px";
+var inity="50px";
+
+function begindrag(event){
+  if(drag==0){
+   floatingd = document.getElementById("mydiv");
+
+   if(floatingd.style.left==""){
+    floatingd.style.left=initx;
+
+   }
+
+   if(floatingd.style.top==""){
+    floatingd.style.top=inity;
+   }
+
+   prex=floatingd.style.left.replace(/px/,"");
+   prey=floatingd.style.top.replace(/px/,"");
+
+  drag=1;
+
+  xdif=event.clientX-prex;
+  ydif=event.clientY-prey;
+
+ }else{
+  drag=0;
+
+ }
+
+  }
+
+
+
+function mousepos(event){
+floatingd = document.getElementById("mydiv");
+  if(drag==1){
+
+   floatingd.style.left = event.clientX-xdif+"px";
+   floatingd.style.top = event.clientY-ydif+"px";;
+
+  }
+
+  }
+
+ 
+
+</script>
+</HEAD>
+<BODY onMouseMove="mousepos(event)" >
+
+<div id='mydiv'>
+<div id='divhead' onclick="begindrag(event)">Header</div>
+      Hello, I'm a floating div!!!
+</div>
+
+This is jus some sample text.
+  <br><br><br><br><br><br><br><br><br><br><br>
+This is jus some sample text.
+</BODY>
+</HTML>
